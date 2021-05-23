@@ -7,7 +7,7 @@ import {
 import ProtectedRoute from "./components/Authentication/ProtectedRoute/ProtectedRoute";
 import routes from "./routes/routes";
 
-import './App.css';
+import './App.scss';
 
 function App() {
     return (

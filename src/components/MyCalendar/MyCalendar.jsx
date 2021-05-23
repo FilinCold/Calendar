@@ -38,6 +38,7 @@ const MyCalendar = () => {
                 selectable = "true"
                 localizer={localizer}
                 events={state.events}
+                onSelectEvent={state.events}
                 onSelectSlot={handleSelectSlot}
             />
         </div>

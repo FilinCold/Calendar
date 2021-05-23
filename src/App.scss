@@ -11,6 +11,8 @@ button {
 }
 body {
   font-family: Arial;
+  //background: rgb(33,33,32);
+  //color: white;
 }
 
 .wrapper__user-posts {
@@ -626,6 +628,10 @@ p {
       color: red;
     }
   }
+}
+.wrapper__calendar {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 /*.profile__user:after {*/
 /*  content: '';*/

@@ -4,7 +4,7 @@ import Authentication from "../Authentication";
 
 
 const ProtectedRoute = (route) => {
-    const isAuth = false;
+    const isAuth = true;
     if (isAuth) {
         return (
             <Route

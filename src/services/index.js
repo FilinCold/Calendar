@@ -1,9 +1,9 @@
-
 import {ajaxWrapper} from '../helpers/ajaxWrapper';
 import {urls} from '../helpers/constant';
 
 export const login = (data) => {
   const url = `${urls.USER}login`;
+
   return ajaxWrapper({
     method: 'POST',
     url,
@@ -13,37 +13,11 @@ export const login = (data) => {
 
 export const registration = (data) => {
   const url = `${urls.USER}register`;
+
   return ajaxWrapper({
     method: 'POST',
     url,
     data,
-  }).then(data => data.data)
-};
-
-export const addPost = (data) => {
-  console.log(`==========>data`, data);
-  const url = `${urls.POST}post`;
-  return ajaxWrapper({
-    method: 'POST',
-    url,
-    data,
-  }).then(data => data.data)
-};
-export const editProfile = (data) => {
-  console.log(`==========>data`, data);
-  const url = `${urls.USER}editprofile`;
-  return ajaxWrapper({
-    method: 'PUT',
-    url,
-    data,
-  }).then(data => data.data)
-};
-export const getAllPosts = (data) => {
-  const url = `${urls.POST}allposts`;
-
-  return ajaxWrapper({
-    method: 'GET',
-    url,
   }).then(data => data.data)
 };
 
@@ -57,30 +31,20 @@ export const getUser = (data) => {
 };
 
 export const addEvent = (data) => {
-  const url = `${urls.EVENTS}`;
+  const url = `${urls.EVENT}addevent`;
+  console.log(`==========>url`, url);
   return ajaxWrapper({
     method: 'POST',
     url,
-    data,
+    data
   }).then(data => data.data)
 };
 
+export const getEvent = (data) => {
+  const url = `${urls.EVENT}getevent`;
 
-
-export const deleteOne = (id) => {
-  const url = `${urls.EVENTS}/${id}`;
   return ajaxWrapper({
-    method: 'DELETE',
+    method: 'GET',
     url,
-    data: {id: id}
-  }).then(data => data.data)
-};
-
-export const changeOne = (id, title) => {
-  const url = `${urls.EVENTS}/${id}`;
-  return ajaxWrapper({
-    method: 'POST',
-    url,
-    data: {id: id, title}
   }).then(data => data.data)
 };

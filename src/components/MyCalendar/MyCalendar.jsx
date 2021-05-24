@@ -6,11 +6,21 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import events from "../../events/events";
 import User from "../User/User";
 import {useHistory} from "react-router-dom";
-import {getUser} from "../../services";
+import {addEvent, getEvent, getUser} from "../../services";
 
 
 const MyCalendar = () => {
-  const [state, setState] = useState({events});
+  const [state, setState] = useState(() => {
+    return {
+      events: [
+        {
+          start: "",
+          end: "",
+          title: ""
+        }
+      ]
+    }
+  });
   const [admin, setAdmin] = useState({
     email: ''
   });
@@ -24,30 +34,51 @@ const MyCalendar = () => {
           }
         })
       }));
+    getEvent()
+      .then(data => setState({
+        events: data
+      }))
+
   }, []);
+  // setState(() => {
+  //   return data.map(d => {
+  //     console.log(`==========>d`, d);
+  //     return {
+  //       events: [
+  //         ...state.events,
+  //         {
+  //           end: d.end,
+  //           start: d.start,
+  //           title: d.title,
+  //         },
+  //       ],
+  //     }
+  //   })
+  // })
+  console.log(`==========>state.events`, state.events);
   const history = useHistory();
+
   const handleSelectSlot = ({start, end, resourceId, box}) => {
 
-    if (admin.email[1] === 'admin@mail.ru' ) {
+    if (admin.email[1] === 'admin@mail.ru') {
+
       const title = window.prompt('New Event name');
       if (title) {
-        setState(() => {
-          return {
-            events: [
-              ...state.events,
-              {
-                end: end,
-                start: start,
-                title,
-              },
-            ],
-          }
-        })
+        let obj = {
+          start,
+          end,
+          title
+        }
+        addEvent(obj)
+          .then(data => data);
+
+
       }
     }
     return false;
   };
   const selectEvent = (event) => {
+
     console.log(`==========>event`, event);
   }
   const localizer = momentLocalizer(moment);
@@ -56,7 +87,7 @@ const MyCalendar = () => {
     localStorage.removeItem('email');
     history.push('/authentication/signin/');
   }
-  
+
   return (
     <div className='wrapper__user-calendar'>
       <div className="wrapper__user">
@@ -70,7 +101,7 @@ const MyCalendar = () => {
           localizer={localizer}
           events={state.events}
           onSelectEvent={selectEvent}
-          onSelectSlot={ handleSelectSlot }
+          onSelectSlot={handleSelectSlot}
         />
       </div>
     </div>

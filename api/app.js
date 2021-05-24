@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
+const eventRoutes = require('./routes/events');
 // const postRoutes = require('./routes/post');
 // const profileRoutes = require('./routes/profile');
 const app = express();
@@ -24,6 +25,7 @@ app.use(bodyParser.json());
 
 // app.use('/api/addpost', postRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/event', eventRoutes);
 // app.use('/api/profile', profileRoutes);
 
 module.exports = app;

@@ -15,9 +15,9 @@ const MyCalendar = () => {
     return {
       events: [
         {
-          start: "",
-          end: "",
-          title: ""
+          start: '',
+          end: '',
+          title: "ccc"
         }
       ]
     }
@@ -41,21 +41,22 @@ const MyCalendar = () => {
           }
         })
       }));
+
     getEvent()
       .then(data => setState({
-        events: data
+          events: data
       }))
   }, [flag]);
 
   const history = useHistory();
   const handleSelectSlot = ({start, end, resourceId, box}) => {
-
+      console.log(`==========>`,start );
     if (admin.email[1] === 'admin@mail.ru') {
       const title = window.prompt('New Event name');
       if (title) {
         let obj = {
-          start,
-          end,
+          start: new Date(start),
+          end: new Date(end),
           title
         }
         addEvent(obj)
@@ -86,7 +87,7 @@ const MyCalendar = () => {
     history.push('/authentication/signin/');
   }
 
-  
+
   return (
     <div className='wrapper__user-calendar'>
       <div className="wrapper__user">
@@ -98,9 +99,15 @@ const MyCalendar = () => {
           style={{minHeight: '500px'}}
           selectable
           localizer={localizer}
-          events={state.events}
+          events={state.events.map(event => ({
+              ...event,
+              start: new Date(event.start),
+              end: new Date(event.end),
+          }))}
+          defaultDate={new Date()}
           onSelectEvent={selectEvent}
           onSelectSlot={handleSelectSlot}
+          views={['month', 'week', 'day']}
           messages={{
             next: 'Следующий',
             previous: 'Предыдущий',

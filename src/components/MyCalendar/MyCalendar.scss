@@ -36,10 +36,10 @@ $grey-color: rgb(89, 89, 88);
       background: $main-color;
 
       button {
-        color: $font-color;
+        color: $grey-color;
 
         &:hover {
-          background: $grey-color;
+          //background: $grey-color;
         }
       }
     }
@@ -47,10 +47,10 @@ $grey-color: rgb(89, 89, 88);
 
   .rbc-btn-group {
     .rbc-active {
-      background: $grey-color;
+      //background: $grey-color;
 
       &:active {
-        background: $grey-color;
+        //background: $grey-color;
       }
     }
   }

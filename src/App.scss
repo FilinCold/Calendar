@@ -11,7 +11,7 @@ button {
 }
 body {
   font-family: Arial;
-  //background: rgb(33,33,32);
+  background: rgb(33,33,32);
   //color: white;
 }
 
@@ -34,6 +34,7 @@ body {
 
 .wrapper__user {
   position: relative;
+  color: #DDD;
 }
 
 //.wrapper__user:after {
@@ -262,8 +263,8 @@ button {
 
 .user__logout-button button {
   background: none;
-  color: gray;
-  border: 1px solid black;
+  color: #DDD;
+  border: 1px solid #DDD;
   padding: 15px;
   cursor: pointer;
   display: block;

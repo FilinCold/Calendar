@@ -8,6 +8,7 @@ import User from "../User/User";
 import {useHistory} from "react-router-dom";
 import {addEvent, editEvent, getEvent, getUser} from "../../services";
 
+import "./MyCalendar.scss"
 
 const MyCalendar = () => {
   const [state, setState] = useState(() => {
@@ -25,6 +26,8 @@ const MyCalendar = () => {
     _id: '60abb9c14449498ec9fbdc45',
     title: 'CHANGED',
   });
+  const [check, setCheck] = useState(false);
+  const [flag, setFlag] = useState(false);
   const [admin, setAdmin] = useState({
     email: ''
   });
@@ -42,12 +45,9 @@ const MyCalendar = () => {
       .then(data => setState({
         events: data
       }))
+  }, [flag]);
 
-  }, []);
-
-  console.log(`==========>state.events`, state.events);
   const history = useHistory();
-
   const handleSelectSlot = ({start, end, resourceId, box}) => {
 
     if (admin.email[1] === 'admin@mail.ru') {
@@ -60,35 +60,33 @@ const MyCalendar = () => {
           title
         }
         addEvent(obj)
-          .then(data => data)
-          .then(() => {
-            history.push('/calendar/')
-          });
+          .then(data => setFlag(!flag))
+          .then(() => history.push('/calendar/'));
       }
     }
     return false;
   };
   const selectEvent = (event) => {
+    if (admin.email[1] === 'admin@mail.ru') {
+      const title = window.prompt('New Event name');
+      setValue({
+        _id: event._id,
+        title: title
+      })
+      console.log(`==========>value`, value);
+      editEvent({_id:event._id,title})
+        .then(data => data)
+        .then(() => setFlag(!flag))
 
-    const title = window.prompt('New Event name');
-    setValue({
-      _id: event._id,
-      title: title
-    })
-    console.log(`==========>value`, value);
-    editEvent({_id:event._id,title})
-      .then(data => data);
-    // console.log(`==========>event`, event);
+    }
+    setCheck(true);
   }
-
-
   const localizer = momentLocalizer(moment);
   const changeStateAuthorization = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
     history.push('/authentication/signin/');
   }
-  // console.log(`==========>value._id`, value._id);
 
   return (
     <div className='wrapper__user-calendar'>
@@ -96,6 +94,7 @@ const MyCalendar = () => {
         <User admin={admin} changeStateAuthorization={changeStateAuthorization}/>
       </div>
       <div className='wrapper__calendar'>
+
         <Calendar
           style={{minHeight: '500px'}}
           // onView={eventChange}

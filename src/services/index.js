@@ -48,3 +48,12 @@ export const getEvent = (data) => {
     url,
   }).then(data => data.data)
 };
+
+export const editEvent = (data) => {
+  const url = `${urls.EVENT}editevent`;
+  return ajaxWrapper({
+    method: 'PUT',
+    url,
+    data
+  }).then(data => data.data)
+};

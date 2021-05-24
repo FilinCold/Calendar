@@ -6,7 +6,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import events from "../../events/events";
 import User from "../User/User";
 import {useHistory} from "react-router-dom";
-import {addEvent, getEvent, getUser} from "../../services";
+import {addEvent, editEvent, getEvent, getUser} from "../../services";
 
 
 const MyCalendar = () => {
@@ -20,6 +20,10 @@ const MyCalendar = () => {
         }
       ]
     }
+  });
+  const [value, setValue] = useState({
+    _id: '60abb9c14449498ec9fbdc45',
+    title: 'CHANGED',
   });
   const [admin, setAdmin] = useState({
     email: ''
@@ -40,21 +44,7 @@ const MyCalendar = () => {
       }))
 
   }, []);
-  // setState(() => {
-  //   return data.map(d => {
-  //     console.log(`==========>d`, d);
-  //     return {
-  //       events: [
-  //         ...state.events,
-  //         {
-  //           end: d.end,
-  //           start: d.start,
-  //           title: d.title,
-  //         },
-  //       ],
-  //     }
-  //   })
-  // })
+
   console.log(`==========>state.events`, state.events);
   const history = useHistory();
 
@@ -70,23 +60,35 @@ const MyCalendar = () => {
           title
         }
         addEvent(obj)
-          .then(data => data);
-
-
+          .then(data => data)
+          .then(() => {
+            history.push('/calendar/')
+          });
       }
     }
     return false;
   };
   const selectEvent = (event) => {
 
-    console.log(`==========>event`, event);
+    const title = window.prompt('New Event name');
+    setValue({
+      _id: event._id,
+      title: title
+    })
+    console.log(`==========>value`, value);
+    editEvent({_id:event._id,title})
+      .then(data => data);
+    // console.log(`==========>event`, event);
   }
+
+
   const localizer = momentLocalizer(moment);
   const changeStateAuthorization = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
     history.push('/authentication/signin/');
   }
+  // console.log(`==========>value._id`, value._id);
 
   return (
     <div className='wrapper__user-calendar'>

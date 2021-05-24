@@ -31,8 +31,8 @@ module.exports.editEvent = async function (req, res) {
     const event = await Event.findOne({
       _id: req.body._id
     });
-
-    event.save();
+    event.title = req.body.title
+    await event.save();
     res.status(201).json(event);
   } catch (e) {
     errorHandler(res, e);

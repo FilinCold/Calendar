@@ -6,6 +6,7 @@ const User = (props) => {
     id: 0,
     img: 'https://www.loyatic.eu/wp-content/uploads/2017/11/iStock_000020004182Medium1.jpg',
     firstName: '',
+    email: '',
     // lastName: 'Doe',
     aboutMe: '',
   })
@@ -22,15 +23,27 @@ const User = (props) => {
           if (u.email === localStorage.getItem('email')) {
             return u.aboutMe
           }
+        }),
+        email: data.map(u => {
+          if (u.email === localStorage.getItem('email')) {
+            return u.email
+          }
         })
       }));
   }, []);
 
+
   return (
     <div className='wrapper__user'>
       <div className="user__fName-lName">
-        <span className='fName'>Name: {user.firstName}</span>
-        {/*<span className="lName">{user.lastName}</span>*/}
+        <div>
+          <span className='fName'>Name: {user.firstName}</span>
+        </div>
+        <div>
+          <span className='fName'>Admin: {props.admin.email[1] === 'admin@mail.ru' ? 'true' : 'false'}</span>
+
+        </div>
+
         <div className="user__logout-button">
           <button onClick={props.changeStateAuthorization}>Logout</button>
         </div>

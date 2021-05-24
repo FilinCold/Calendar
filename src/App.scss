@@ -36,15 +36,15 @@ body {
   position: relative;
 }
 
-.wrapper__user:after {
-  content: '';
-  position: absolute;
-  top: 1%;
-  left: 105%;
-  width: 1px;
-  height: 500px;
-  background: gray;
-}
+//.wrapper__user:after {
+//  content: '';
+//  position: absolute;
+//  top: 1%;
+//  left: 105%;
+//  width: 1px;
+//  height: 500px;
+//  background: gray;
+//}
 
 .vertical__line {
   width: 1px;
@@ -630,6 +630,12 @@ p {
   }
 }
 .wrapper__calendar {
+
+}
+.wrapper__user {
+  margin-bottom: 50px;
+}
+.wrapper__user-calendar {
   max-width: 1000px;
   margin: 0 auto;
 }

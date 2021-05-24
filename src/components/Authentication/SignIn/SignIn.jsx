@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
+import {login} from "../../../services";
+
 
 const SignIn = () => {
     const history = useHistory();
@@ -14,21 +16,19 @@ const SignIn = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // login(formLogin).then((res,req) => localStorage.setItem('token', res.token))
-        //     .then((res,req) => localStorage.setItem('email', formLogin.email))
-        //     .then(
-        //         () => {
-        //             history.push('/calendar/');
-        //         }
-        //     )
-        //     .catch((e) => {
-        //         setError(true)
-        //     });
+        login(formLogin).then((res,req) => localStorage.setItem('token', res.token))
+            .then((res,req) => localStorage.setItem('email', formLogin.email))
+            .then(
+                () => {
+                    history.push('/calendar/');
+                }
+            )
+            .catch((e) => {
+                setError(true)
+            });
 
     }
-    const handleSignUpClick = () => {
-        history.push('/signup/');
-    }
+
     const handleOnChange = (e, property) => {
         setFormLogin((prevProps) => {
             return {
@@ -40,6 +40,7 @@ const SignIn = () => {
 
     return (
         <div className='wrapper__login-register'>
+
             <div className="container__h2">
                 <h2>Sign In</h2>
             </div>

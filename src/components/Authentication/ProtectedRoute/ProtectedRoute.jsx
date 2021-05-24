@@ -4,27 +4,26 @@ import Authentication from "../Authentication";
 
 
 const ProtectedRoute = (route) => {
-    const isAuth = true;
-    if (isAuth) {
-        return (
-            <Route
-                exact={route.exact}
-                path={route.path}
-                render={(prop) =>
-                {
-                    return <route.component
-                        {...prop}
-                        routes={route.routes}
-                    />
-                }
-                }
-            />
-        )
-    }
-
+  const isAuth = Boolean(localStorage.getItem('token'));
+  if (isAuth) {
     return (
-        <Authentication />
+      <Route
+        exact={route.exact}
+        path={route.path}
+        render={(prop) => {
+          return <route.component
+            {...prop}
+            routes={route.routes}
+          />
+        }
+        }
+      />
     )
+  }
+
+  return (
+    <Authentication/>
+  )
 }
 
 export default ProtectedRoute;

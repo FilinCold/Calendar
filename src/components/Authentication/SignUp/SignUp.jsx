@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
+import {registration} from "../../../services";
 
 const SignUp = () => {
 
@@ -8,10 +9,10 @@ const SignUp = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        // registration(form).then(res => res).
-        // then(() => {
-        //     history.push('/authentication/signin/')
-        // });
+        registration(form).then(res => res).
+        then(() => {
+            history.push('/authentication/signin/')
+        });
         history.push('/authentication/signin/');
     }
     const handleOnChange = (e, property) => {

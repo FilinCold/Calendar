@@ -51,7 +51,6 @@ const MyCalendar = () => {
   const handleSelectSlot = ({start, end, resourceId, box}) => {
 
     if (admin.email[1] === 'admin@mail.ru') {
-
       const title = window.prompt('New Event name');
       if (title) {
         let obj = {
@@ -73,7 +72,6 @@ const MyCalendar = () => {
         _id: event._id,
         title: title
       })
-      console.log(`==========>value`, value);
       editEvent({_id:event._id,title})
         .then(data => data)
         .then(() => setFlag(!flag))
@@ -88,6 +86,7 @@ const MyCalendar = () => {
     history.push('/authentication/signin/');
   }
 
+  
   return (
     <div className='wrapper__user-calendar'>
       <div className="wrapper__user">
@@ -97,12 +96,25 @@ const MyCalendar = () => {
 
         <Calendar
           style={{minHeight: '500px'}}
-          // onView={eventChange}
           selectable
           localizer={localizer}
           events={state.events}
           onSelectEvent={selectEvent}
           onSelectSlot={handleSelectSlot}
+          messages={{
+            next: 'Следующий',
+            previous: 'Предыдущий',
+            today: 'Сегодня',
+            month: 'Месяц',
+            week: 'Неделя',
+            day: 'День',
+            work_week: 'Рабочая неделя',
+            allDay: 'Весь день',
+            yesterday: 'Вчера',
+            tomorrow: 'Завтра',
+            noEventsInRange: 'Не найдено никаких мероприятий в текущем периоде.',
+          }}
+
         />
       </div>
     </div>

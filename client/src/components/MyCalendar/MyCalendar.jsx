@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { Calendar, momentLocalizer } from 'react-big-calendar'
+import React, {useEffect, useState} from 'react'
+import {Calendar, momentLocalizer} from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import {useHistory} from 'react-router-dom';
 
 import User from '../User/User';
 import {
-  addEvent,
   editEvent,
   getEvent,
   getUser
 } from '../../services';
 
 import './MyCalendar.scss';
+import ModalWindow from "./ModalWindow/ModalWindow";
 
 const MyCalendar = () => {
   const history = useHistory();
+
+  const [check, setCheck] = useState(false);
+
   const [state, setState] = useState(() => {
     return {
       events: [
@@ -51,23 +54,6 @@ const MyCalendar = () => {
       }))
   }, [flag]);
 
-  const handleSelectSlot = ({start, end, resourceId, box}) => {
-    if (admin.email[1] === 'admin@mail.ru') {
-      const title = window.prompt('New Event name');
-      if (title) {
-        let obj = {
-          start: new Date(start),
-          end: new Date(end),
-          title
-        }
-        addEvent(obj)
-          .then(data => setFlag(!flag))
-          .then(() => history.push('/calendar/'));
-      }
-    }
-    return false;
-  };
-
   const selectEvent = (event) => {
     if (admin.email[1] === 'admin@mail.ru') {
       const title = window.prompt('New Event name');
@@ -88,6 +74,12 @@ const MyCalendar = () => {
       <div className="wrapper__user">
         <User admin={admin} changeStateAuthorization={changeStateAuthorization}/>
       </div>
+      <div className='wrapper__add_event'>
+        <button className='add-event' onClick={() => setCheck(true)}>Добавить событие</button>
+      </div>
+      { check
+        ? <ModalWindow setCheck={setCheck} admin={admin} setFlag={setFlag} flag={flag}/>
+        : null}
       <div className='wrapper__calendar'>
 
         <Calendar
@@ -101,7 +93,7 @@ const MyCalendar = () => {
           }))}
           defaultDate={new Date()}
           onSelectEvent={selectEvent}
-          onSelectSlot={handleSelectSlot}
+          // onSelectSlot={handleSelectSlot}
           views={['month', 'week', 'day']}
           messages={{
             next: 'Следующий',

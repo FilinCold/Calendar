@@ -16,8 +16,6 @@ const SignIn = () => {
     password: '',
   });
 
-  const [error, setError] = useState(false);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     login(formLogin).then((res, req) => localStorage.setItem('token', res.token))
@@ -27,9 +25,7 @@ const SignIn = () => {
           history.push('/calendar/');
         }
       )
-      .catch((e) => {
-        setError(true)
-      });
+
   };
 
   const handleOnChange = (e, property) => {

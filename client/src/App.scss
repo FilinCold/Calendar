@@ -640,13 +640,73 @@ p {
     }
   }
 }
+
+.add-event {
+  text-align: right;
+  background: none;
+  color: #DDD;
+  margin-bottom: 20px;
+  border: 1px solid #DDD;
+  padding: 15px;
+  cursor: pointer;
+  display: block;
+}
 .wrapper__calendar {
 
 }
 .wrapper__user {
-  margin-bottom: 50px;
+  margin-bottom: 25px;
+}
+.wrapper__modal-window {
+  display: flex;
+  justify-content: center;
+  width: 500px;
+  height: 200px;
+  content: '';
+  top: 45%;
+  left: 30%;
+  position: absolute;
+  z-index: 10;
+  align-items: center;
+  border: 1px solid black;
+  background: gray;
+  .date__block {
+    span {
+      margin-right: 10px;
+    }
+    display: flex;
+    justify-content: space-between;
+    max-width: 300px;
+    color: #e6e6e6;
+    margin: 5px 0;
+    &:nth-child(3) input {
+      max-width: 140px;
+      padding: 5px;
+    }
+    &:nth-child(4) {
+      margin-top: 20px;
+    }
+    button {
+      background: none;
+      color: #e6e6e6;
+      border: 1px solid #DDD;
+      padding: 15px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+.wrapper__add_event {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    text-align: center;
+
+  }
 }
 .wrapper__user-calendar {
+  position: relative;
   max-width: 1000px;
   margin: 0 auto;
 }

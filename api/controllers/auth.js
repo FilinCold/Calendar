@@ -1,12 +1,12 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const keys = require('../config/keys')
-const errorHandler = require('../utils/errorHandler')
+const keys = require('../config/keys');
+
+const errorHandler = require('../utils/errorHandler');
 
 module.exports.login = async function (req, res) {
   const candidate = await User.findOne({email: req.body.email})
-
   if (candidate) {
     // check password, user found
     const passwordResult = bcrypt.compareSync(req.body.password, candidate.password);
@@ -22,7 +22,6 @@ module.exports.login = async function (req, res) {
       });
     } else {
       // password not equal
-
       res.status(401).json({
         message: 'Password not equal'
       });
@@ -33,13 +32,11 @@ module.exports.login = async function (req, res) {
       message: 'Email not found',
     })
   }
-
-}
+};
 
 module.exports.register = async function (req, res) {
   console.log(`==========>req`, req);
   const candidate = await User.findOne({email: req.body.email});
-
   if (candidate) {
     res.status(409).json({
       message: 'Email is busy. Try other email'
@@ -60,18 +57,18 @@ module.exports.register = async function (req, res) {
       errorHandler(res, e)
     }
   }
-}
+};
 
-module.exports.getUser = async function(req,res) {
+module.exports.getUser = async function (req, res) {
   try {
     const user = await User.find();
     res.status(201).json(user);
   } catch (e) {
     errorHandler(res, e);
   }
-}
+};
 
-module.exports.editProfile = async function(req,res) {
+module.exports.editProfile = async function (req, res) {
   console.log(`==========>req.body`, req.body);
 
   const user = await User.findOne({
@@ -85,4 +82,4 @@ module.exports.editProfile = async function(req,res) {
   } catch (e) {
     errorHandler(res, e);
   }
-}
+};

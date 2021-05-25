@@ -1,4 +1,5 @@
 const Event = require('../models/Events');
+
 const errorHandler = require('../utils/errorHandler');
 
 module.exports.addEvent = async function (req, res) {
@@ -15,7 +16,7 @@ module.exports.addEvent = async function (req, res) {
   } catch (e) {
     errorHandler(res, e);
   }
-}
+};
 
 module.exports.getEvent = async function (req, res) {
   try {
@@ -24,7 +25,7 @@ module.exports.getEvent = async function (req, res) {
   } catch (e) {
     errorHandler(res, e);
   }
-}
+};
 
 module.exports.editEvent = async function (req, res) {
   try {
@@ -37,4 +38,4 @@ module.exports.editEvent = async function (req, res) {
   } catch (e) {
     errorHandler(res, e);
   }
-}
+};

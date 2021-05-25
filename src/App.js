@@ -9,7 +9,8 @@ import routes from "./routes/routes";
 
 import './App.scss';
 
-function App() {
+const App = () => {
+
     return (
         <Router>
             <Switch>
@@ -34,6 +35,6 @@ function App() {
             <Redirect from='/' to='/calendar/'/>
         </Router>
     );
-}
+};
 
 export default App;

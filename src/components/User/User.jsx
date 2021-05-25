@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from "react";
-import {getUser} from "../../services";
+import React, { useEffect, useState } from 'react';
+
+import { getUser } from '../../services';
 
 const User = (props) => {
   const [user, setUser] = useState({
@@ -9,7 +10,7 @@ const User = (props) => {
     email: '',
     // lastName: 'Doe',
     aboutMe: '',
-  })
+  });
   useEffect(() => {
     getUser()
       .then(data => setUser({
@@ -32,7 +33,6 @@ const User = (props) => {
       }));
   }, []);
 
-
   return (
     <div className='wrapper__user'>
       <div className="user__fName-lName">
@@ -49,7 +49,7 @@ const User = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default User;

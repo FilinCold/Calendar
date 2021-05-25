@@ -554,11 +554,21 @@ p {
 //  background: #BABABA;
 //  left: 0;
 //}
-
+.register-link {
+  color: #BABABA;
+}
+.login__link {
+  color: #BABABA;
+}
 .s {
   color: red;
 }
-
+.wrapper__login-register label{
+  color: #BABABA;
+}
+.wrapper__login-register h2 {
+  color: #BABABA;
+}
 .list__links a.active {
   text-decoration: underline;
 }

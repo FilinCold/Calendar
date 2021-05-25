@@ -1,4 +1,4 @@
-const api = 'http://localhost:5000/api/'
+const api = 'http://localhost:5000/api/';
 
 export const urls = {
   API: api,

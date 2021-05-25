@@ -19,4 +19,4 @@ export const ajaxWrapper = (params) => {
     url: params.url,
     data: params.data,
   });
-}
+};

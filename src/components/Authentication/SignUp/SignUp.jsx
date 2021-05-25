@@ -1,12 +1,13 @@
-import React, {useState} from "react";
-import { useHistory } from "react-router-dom";
-import {registration} from "../../../services";
+import React, {useState} from 'react';
+import { useHistory } from 'react-router-dom';
+
+import { registration } from '../../../services';
 
 const SignUp = () => {
-
     const transitionToSignIn = () => {
         history.push('/authentication/signin/')
-    }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault()
         registration(form).then(res => res).
@@ -14,7 +15,8 @@ const SignUp = () => {
             history.push('/authentication/signin/')
         });
         history.push('/authentication/signin/');
-    }
+    };
+
     const handleOnChange = (e, property) => {
         setForm((prevProps) => {
             return {
@@ -22,8 +24,10 @@ const SignUp = () => {
                 [property]: e.target.value
             }
         })
-    }
+    };
+
     const history = useHistory();
+
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -92,9 +96,7 @@ const SignUp = () => {
                 </div>
             </form>
         </div>
-
-
-    )
-}
+    );
+};
 
 export default SignUp;

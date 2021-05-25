@@ -30,6 +30,6 @@ const routes = [
         exact: true,
     },
 
-]
+];
 
 export default routes;

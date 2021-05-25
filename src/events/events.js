@@ -1,4 +1,3 @@
-
 export default [
     {
         // allDay: false,
@@ -12,4 +11,4 @@ export default [
         end: new Date(2021, 4, 24, 2, 0, 0, 0),
         title: 'All Day Event',
     },
-]
+];
